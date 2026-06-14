@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(claude mcp *)",
+      "Bash(mkdir -p /Users/ken/Desktop/rendali/rend/public/videos && ls /Users/ken/Desktop/rendali/rend/public/)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)"
+    ]
+  }
+}
