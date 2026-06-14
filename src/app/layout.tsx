@@ -6,7 +6,7 @@ import { SiteShell } from "@/components/rendalli/site-shell";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 

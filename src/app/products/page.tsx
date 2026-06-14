@@ -50,8 +50,16 @@ export default function ProductsPage() {
       {/* HERO */}
       <section
         ref={heroRef}
-        className="relative min-h-[110dvh] overflow-hidden bg-night-leaf bg-[url('/images/products.%20page.JPG')] bg-cover bg-center text-white md:bg-fixed flex items-center justify-center"
+        className="relative min-h-[110dvh] overflow-hidden bg-night-leaf text-white flex items-center justify-center"
       >
+        <Image
+          src="/images/products.%20page.JPG"
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover"
+        />
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-night-leaf/60 via-night-leaf/40 to-night-leaf" />
         </div>
@@ -126,8 +134,16 @@ export default function ProductsPage() {
           <motion.div
             style={{ y: imgUp }}
             aria-label="Fresh Tilapia character image"
-            className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[url('/images/01%20%E2%80%94%20Character.JPG')] bg-cover bg-center md:bg-fixed"
-          />
+            className="relative aspect-[4/5] rounded-3xl overflow-hidden"
+          >
+            <Image
+              src="/images/01%20%E2%80%94%20Character.JPG"
+              alt="Fresh Tilapia character"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </motion.div>
 
           <motion.div style={{ y: copyDown }} className="space-y-6">
             <p className="text-[11px] tracking-[0.3em] uppercase text-rendalli-green">01 — Character</p>
@@ -155,8 +171,15 @@ export default function ProductsPage() {
       <section
         ref={fullRef}
         aria-label="Fresh Tilapia from the farm to your table"
-        className="relative h-[90vh] overflow-hidden bg-night-leaf bg-[url('/images/table.JPG')] bg-cover bg-center md:bg-fixed"
+        className="relative h-[90vh] overflow-hidden bg-night-leaf"
       >
+        <Image
+          src="/images/table.JPG"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-t from-night-leaf via-night-leaf/30 to-transparent" />
         </div>

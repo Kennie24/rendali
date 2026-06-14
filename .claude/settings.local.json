@@ -8,7 +8,10 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git remote *)",
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(timeout 90 npx --no-install next build)",
+      "Bash(npx --no-install next build)",
+      "Bash(git push *)"
     ]
   }
 }

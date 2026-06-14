@@ -86,7 +86,7 @@ export function Home({ posts }: { posts: JournalMeta[] }) {
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 aria-label={activeHero.alt}
                 className="absolute inset-0 h-full w-full object-cover brightness-[0.58]"
               />

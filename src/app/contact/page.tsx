@@ -12,6 +12,40 @@ export default function ContactPage() {
 
   return (
     <>
+      {/* HERO BANNER — fixed background */}
+      <section
+        aria-label="Contact Rendalli"
+        className="relative h-[80vh] min-h-[520px] overflow-hidden bg-night-leaf text-white bg-[url('/images/fixed%20bg%201.JPG')] bg-cover bg-center md:bg-fixed flex items-end"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-night-leaf via-night-leaf/50 to-night-leaf/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pb-16 md:pb-24 w-full">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="text-[11px] tracking-[0.3em] uppercase text-fresh-lemon mb-6"
+          >
+            Contact · Rendalli
+          </motion.p>
+          <h1 className="text-5xl md:text-8xl font-light tracking-tight leading-[0.95] text-balance max-w-4xl">
+            <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: EASE }} className="block">
+              Come find us.
+            </motion.span>
+            <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.15, ease: EASE }} className="block italic text-rendalli-green">
+              Stay for the fish.
+            </motion.span>
+          </h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.6 }}
+            className="mt-8 text-lg text-leaf-mist/85 max-w-xl"
+          >
+            Drop by the shop, send a note, or call the helpline. We&apos;re always close to the water.
+          </motion.p>
+        </div>
+      </section>
+
       {/* HERO — split screen with drift-in headline and floating label reveal */}
       <section className="relative min-h-[100dvh] grid md:grid-cols-2 pt-28">
         <div className="relative overflow-hidden bg-night-leaf text-white flex items-center">
