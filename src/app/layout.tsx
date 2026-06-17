@@ -31,7 +31,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-background text-foreground">
+      <body suppressHydrationWarning className="min-h-full bg-background text-foreground">
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

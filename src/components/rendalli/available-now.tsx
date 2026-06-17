@@ -17,7 +17,7 @@ export function AvailableNow() {
       <div aria-hidden className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-fresh-lemon/30 blur-3xl" />
       <div aria-hidden className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-night-leaf/40 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+      <div className="relative w-full px-6 md:px-10">
         <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           {/* HEADLINE */}
           <div>

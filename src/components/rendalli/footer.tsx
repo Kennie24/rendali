@@ -7,7 +7,7 @@ import { NAV_ITEMS } from "@/lib/rendalli";
 export function SiteFooter() {
   return (
     <footer className="relative bg-night-leaf text-leaf-mist mt-24">
-      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-16 pb-10 grid gap-12 md:grid-cols-12">
+      <div className="w-full px-6 md:px-10 pt-16 pb-10 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5 space-y-4">
           <RendalliLogo tone="dark" />
           <p className="text-leaf-mist/70 text-sm leading-relaxed max-w-sm">
@@ -44,7 +44,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-leaf-mist/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row gap-3 justify-between text-xs text-leaf-mist/60">
+        <div className="w-full px-6 md:px-10 py-6 flex flex-col md:flex-row gap-3 justify-between text-xs text-leaf-mist/60">
           <p>© {new Date().getFullYear()} Rendalli Ltd. Farm-to-shop within 24 hours · Est. 2024</p>
           <p className="tracking-[0.2em] uppercase">Natural · Organic · Tasty · Together</p>
         </div>

@@ -2,161 +2,208 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { IMAGES } from "@/lib/rendalli";
-import { MapPin, Mail, Phone, Send, Check } from "lucide-react";
-
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+import { MapPin, Mail, Phone, Send, Check, Building2, Truck, ShoppingBag } from "lucide-react";
+import { Reveal, SectionHeader, EASE } from "@/components/rendalli/primitives";
 
 export default function ContactPage() {
   const [sent, setSent] = useState(false);
+  const [inquiryType, setInquiryType] = useState<"retail" | "wholesale" | "press">("retail");
 
   return (
     <>
-      {/* HERO BANNER — fixed background */}
-      <section
-        aria-label="Contact Rendalli"
-        className="relative h-[80vh] min-h-[520px] overflow-hidden bg-night-leaf text-white bg-[url('/images/fixed%20bg%201.JPG')] bg-cover bg-center md:bg-fixed flex items-end"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-night-leaf via-night-leaf/50 to-night-leaf/20" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 pb-16 md:pb-24 w-full">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-            className="text-[11px] tracking-[0.3em] uppercase text-fresh-lemon mb-6"
-          >
-            Contact · Rendalli
-          </motion.p>
-          <h1 className="text-5xl md:text-8xl font-light tracking-tight leading-[0.95] text-balance max-w-4xl">
-            <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: EASE }} className="block">
-              Come find us.
-            </motion.span>
-            <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.15, ease: EASE }} className="block italic text-rendalli-green">
-              Stay for the fish.
-            </motion.span>
-          </h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-8 text-lg text-leaf-mist/85 max-w-xl"
-          >
-            Drop by the shop, send a note, or call the helpline. We&apos;re always close to the water.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* HERO — split screen with drift-in headline and floating label reveal */}
-      <section className="relative min-h-[100dvh] grid md:grid-cols-2 pt-28">
-        <div className="relative overflow-hidden bg-night-leaf text-white flex items-center">
-          <motion.div
-            initial={{ scale: 1.2, opacity: 0.4 }}
-            animate={{ scale: 1, opacity: 0.5 }}
-            transition={{ duration: 2, ease: EASE }}
-            className="absolute inset-0"
-          >
-            <Image src={IMAGES.heroBg} alt="Ugandan market" fill sizes="50vw" className="object-cover" />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-br from-night-leaf/70 via-night-leaf/50 to-night-leaf" />
-          <div className="relative z-10 px-6 md:px-14 py-16 w-full">
+      {/* HERO — 2 column */}
+      <section aria-label="Contact Rendalli" className="grid md:grid-cols-2 bg-[#2E7D32] text-white md:h-[78dvh] md:min-h-[560px]">
+        {/* LEFT — green bg with copy */}
+        <div className="relative flex items-center min-h-[60vh] md:min-h-0 md:h-full overflow-hidden">
+          <div aria-hidden className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-fresh-lemon/20 blur-3xl" />
+          <div aria-hidden className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-night-leaf/40 blur-3xl" />
+          <div className="relative w-full px-6 py-16 md:px-16 md:py-24 lg:px-24 lg:py-32 max-w-xl mx-auto md:mx-0">
             <motion.p
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: EASE }}
-              className="text-[11px] tracking-[0.3em] uppercase text-rendalli-green mb-8"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: EASE }}
+              className="text-[11px] tracking-[0.3em] uppercase text-fresh-lemon mb-6"
             >
-              Come say hello
+              Contact · Rendalli
             </motion.p>
-            <h1 className="text-5xl md:text-7xl font-light tracking-tighter leading-[0.95] text-balance">
-              <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: EASE }} className="block">
-                Let&apos;s build
-              </motion.span>
-              <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.15, ease: EASE }} className="block italic text-fresh-lemon">
-                something
-              </motion.span>
-              <motion.span initial={{ y: 60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, delay: 0.3, ease: EASE }} className="block">
-                delicious.
-              </motion.span>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[0.95] text-balance overflow-hidden">
+              <span className="block overflow-hidden">
+                {"Let's talk fish.".split(" ").map((word, i) => (
+                  <motion.span
+                    key={`${word}-${i}`}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: i * 0.08, ease: EASE }}
+                    className="inline-block mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="block overflow-hidden italic text-night-leaf">
+                {"And good business.".split(" ").map((word, i) => (
+                  <motion.span
+                    key={`${word}-${i}`}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.35 + i * 0.08, ease: EASE }}
+                    className="inline-block mr-[0.25em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+              <motion.span
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.9, delay: 0.9, ease: EASE }}
+                className="mt-5 block h-[3px] w-24 bg-fresh-lemon origin-left"
+                aria-hidden
+              />
             </h1>
-
-            <motion.ul
-              initial="hidden"
-              animate="show"
-              variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1, delayChildren: 0.7 } } }}
-              className="mt-12 space-y-5 text-leaf-mist"
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.9, delay: 0.6 }}
+              className="mt-8 text-lg text-white/90 max-w-md"
             >
-              {[
-                { Icon: MapPin, label: "Bulenga Fish Shop, Kampala, Uganda" },
-                { Icon: Mail, label: "hello@rendalli.co.ug" },
-                { Icon: Phone, label: "+256 700 000 000" },
-              ].map(({ Icon, label }, i) => (
-                <motion.li
-                  key={i}
-                  variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0 } }}
-                  className="flex items-center gap-4"
-                >
-                  <span className="w-10 h-10 rounded-full bg-rendalli-green/20 text-rendalli-green flex items-center justify-center">
-                    <Icon size={18} />
-                  </span>
-                  <span className="text-sm md:text-base">{label}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
+              Retail orders, wholesale enquiries, or partnership questions — we&apos;re always close to the water.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8, ease: EASE }}
+              className="mt-10 flex flex-wrap items-center gap-4 text-sm"
+            >
+              <a
+                href="tel:+256706609808"
+                className="inline-flex items-center gap-2 bg-night-leaf text-white px-5 py-3 rounded-full font-medium hover:bg-white hover:text-night-leaf transition-all hover:-translate-y-0.5"
+              >
+                <Phone size={15} /> 0706 609 808
+              </a>
+              <a
+                href="mailto:hello@rendalli.co.ug"
+                className="inline-flex items-center gap-2 border border-white/40 text-white px-5 py-3 rounded-full font-medium hover:bg-white hover:text-night-leaf transition-all hover:-translate-y-0.5"
+              >
+                <Mail size={15} /> hello@rendalli.co.ug
+              </a>
+            </motion.div>
           </div>
         </div>
 
-        {/* FORM */}
-        <div className="bg-background flex items-center">
-          <div className="w-full px-6 md:px-14 py-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-            >
-              <p className="text-[11px] tracking-[0.3em] uppercase text-rendalli-green mb-3">Drop us a line</p>
-              <h2 className="text-3xl md:text-4xl font-light text-night-leaf tracking-tight mb-8">Fresh Nile Tilapia, farmed with care. Pick yours up today.</h2>
+        {/* RIGHT — photo */}
+        <div className="relative min-h-[50vh] md:min-h-0 md:h-full order-first md:order-last">
+          <Image
+            src="/images/contact%20hero.jpg"
+            alt="Rendalli — close to the water"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+      </section>
 
-              {sent ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="p-8 rounded-2xl bg-leaf-mist border border-rendalli-green/30 flex items-center gap-4"
+      {/* QUICK INFO */}
+      <section className="bg-background border-y border-[color:var(--color-mist)]">
+        <div className="w-full px-6 md:px-10 py-12 grid md:grid-cols-3 gap-8">
+          {[
+            { Icon: MapPin, title: "Visit", body: "Bulenga Fish Shop, Kampala" },
+            { Icon: Phone, title: "Call sales", body: "+256 706 609 808" },
+            { Icon: Mail, title: "Email", body: "hello@rendalli.co.ug" },
+          ].map(({ Icon, title, body }, i) => (
+            <Reveal key={title} delay={i * 0.08}>
+              <div className="flex items-center gap-4">
+                <span className="w-12 h-12 rounded-xl bg-rendalli-green/10 text-rendalli-green flex items-center justify-center">
+                  <Icon size={20} />
+                </span>
+                <div>
+                  <p className="text-[10px] tracking-[0.3em] uppercase text-[color:var(--color-slate)]">{title}</p>
+                  <p className="text-base text-night-leaf font-medium">{body}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* FORM */}
+      <section className="bg-[color:var(--color-steel)] py-24 md:py-32">
+        <div className="max-w-5xl mx-auto px-6 md:px-10">
+          <SectionHeader
+            eyebrow="Get in touch"
+            title={<>Tell us what you <em className="not-italic text-rendalli-green">need.</em></>}
+            description="Pick the inquiry type so we can route you to the right team."
+          />
+
+          <Reveal delay={0.1}>
+            <div className="flex flex-wrap gap-2 mb-8">
+              {[
+                { id: "retail", label: "Retail order", Icon: ShoppingBag },
+                { id: "wholesale", label: "Wholesale / B2B", Icon: Truck },
+                { id: "press", label: "Press / partner", Icon: Building2 },
+              ].map(({ id, label, Icon }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setInquiryType(id as typeof inquiryType)}
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium border transition-all hover:-translate-y-0.5 ${
+                    inquiryType === id
+                      ? "bg-night-leaf text-white border-night-leaf"
+                      : "bg-white text-night-leaf border-[color:var(--color-mist)] hover:border-rendalli-green"
+                  }`}
                 >
+                  <Icon size={15} /> {label}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <div className="rounded-3xl bg-white border border-[color:var(--color-mist)] p-8 md:p-12 hover-lift">
+              {sent ? (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                  className="flex items-center gap-4">
                   <span className="w-12 h-12 rounded-full bg-rendalli-green text-white flex items-center justify-center">
                     <Check size={22} />
                   </span>
                   <div>
-                    <p className="font-medium text-night-leaf">Asante! We got it.</p>
-                    <p className="text-sm text-deep-forest/80">We&apos;ll be in touch within one business day.</p>
+                    <p className="font-medium text-night-leaf text-lg">Asante! We got it.</p>
+                    <p className="text-sm text-[color:var(--color-slate)]">We&apos;ll be in touch within one business day.</p>
                   </div>
                 </motion.div>
               ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSent(true);
-                  }}
-                  className="space-y-5"
-                >
-                  <FloatingField id="name" label="Your name" />
-                  <FloatingField id="email" label="Email address" type="email" />
-                  <FloatingField id="message" label="What&rsquo;s on your plate?" as="textarea" />
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full md:w-auto inline-flex items-center gap-3 bg-night-leaf text-white px-8 py-4 rounded-full font-medium hover:bg-rendalli-green transition-colors"
-                  >
-                    Send message <Send size={16} />
-                  </motion.button>
+                <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <FloatingField id="name" label="Your name" />
+                    <FloatingField id="email" label="Email address" type="email" />
+                  </div>
+                  {inquiryType !== "retail" && (
+                    <div className="grid md:grid-cols-2 gap-5">
+                      <FloatingField id="company" label="Company / organisation" />
+                      <FloatingField id="phone" label="Phone" type="tel" />
+                    </div>
+                  )}
+                  <FloatingField id="message" label={inquiryType === "wholesale" ? "Volumes, cadence, location" : "What's on your plate?"} as="textarea" />
+                  <div className="flex flex-wrap items-center gap-4 pt-2">
+                    <motion.button
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      className="inline-flex items-center gap-3 bg-night-leaf text-white px-8 py-4 rounded-full font-medium hover:bg-rendalli-green transition-colors"
+                    >
+                      Send message <Send size={16} />
+                    </motion.button>
+                    <p className="text-xs text-[color:var(--color-slate)]">Typical response: under 24 hours.</p>
+                  </div>
                 </form>
               )}
-            </motion.div>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* VISIT BAND */}
+      {/* MARQUEE / CTA */}
       <section className="relative bg-fresh-lemon py-20 overflow-hidden">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
@@ -165,7 +212,7 @@ export default function ContactPage() {
         >
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="inline-flex items-center gap-16">
-              Come &amp; Taste <span className="w-3 h-3 rounded-full bg-night-leaf" />
+              Come & Taste <span className="w-3 h-3 rounded-full bg-night-leaf" />
             </span>
           ))}
         </motion.div>
@@ -198,7 +245,7 @@ function FloatingField({
     onBlur: () => setFocus(false),
     required: true,
     className:
-      "peer w-full bg-transparent border-0 border-b-2 border-border focus:border-rendalli-green outline-none pt-6 pb-2 text-night-leaf placeholder-transparent transition-colors",
+      "peer w-full bg-transparent border-0 border-b-2 border-[color:var(--color-mist)] focus:border-rendalli-green outline-none pt-6 pb-2 text-night-leaf placeholder-transparent transition-colors",
     placeholder: label,
   };
 
@@ -212,10 +259,11 @@ function FloatingField({
       <label
         htmlFor={id}
         className={`absolute left-0 pointer-events-none transition-all duration-200 ${
-          active ? "top-0 text-xs text-rendalli-green tracking-[0.2em] uppercase" : "top-6 text-base text-deep-forest/60"
+          active ? "top-0 text-xs text-rendalli-green tracking-[0.2em] uppercase" : "top-6 text-base text-[color:var(--color-slate)]"
         }`}
-        dangerouslySetInnerHTML={{ __html: label }}
-      />
+      >
+        {label}
+      </label>
     </div>
   );
 }
